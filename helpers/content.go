@@ -79,10 +79,21 @@ func BytesToHTML(b []byte) template.HTML {
 	return template.HTML(string(b))
 }
 
+func dirToAbsPrefix(baseurl template.URL, dir string) (prefix string) {
+	prefix = strings.Replace(dir, `\`, "/", -1)
+	if len(prefix) > 0 && prefix[0:1] != "/" {
+		prefix = "/" + prefix
+	}
+	prefix = strings.TrimRight(prefix, "/")
+	prefix = MakePermalink(string(baseurl), prefix).String()
+	return
+}
+
 func GetHtmlRenderer(defaultFlags int, ctx RenderingContext) blackfriday.Renderer {
 	renderParameters := blackfriday.HtmlRendererParameters{
 		FootnoteAnchorPrefix:       viper.GetString("FootnoteAnchorPrefix"),
 		FootnoteReturnLinkContents: viper.GetString("FootnoteReturnLinkContents"),
+		AbsolutePrefix:             dirToAbsPrefix(ctx.BaseUrl, ctx.PageDir),
 	}
 
 	b := len(ctx.DocumentId) != 0
@@ -174,8 +185,10 @@ func ExtractTOC(content []byte) (newcontent []byte, toc []byte) {
 type RenderingContext struct {
 	Content     []byte
 	PageFmt     string
+	PageDir     string
 	DocumentId  string
 	ConfigFlags map[string]bool
+	BaseUrl     template.URL
 }
 
 func RenderBytesWithTOC(ctx RenderingContext) []byte {
@@ -260,9 +273,11 @@ func GetRstContent(content []byte) string {
 	if err != nil {
 		path, err = exec.LookPath("rst2html.py")
 		if err != nil {
-			jww.ERROR.Println("rst2html / rst2html.py not found in $PATH: Please install.\n",
-			                  "                 Leaving reStructuredText content unrendered.")
-			return(string(content))
+			jww.ERROR.Println(
+				"rst2html / rst2html.py not found in $PATH: Please install.\n",
+				"                 Leaving reStructuredText content unrendered.",
+			)
+			return (string(content))
 		}
 	}
 
