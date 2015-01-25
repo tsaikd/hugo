@@ -22,6 +22,7 @@ import (
 
 func init() {
 	RegisterHandler(new(cssHandler))
+	RegisterHandler(new(directHandler))
 }
 
 type basicFileHandler Handle
@@ -42,5 +43,17 @@ func (h cssHandler) Extensions() []string { return []string{"css"} }
 func (h cssHandler) FileConvert(f *source.File, s *Site) HandledResult {
 	x := cssmin.Minify(f.Bytes())
 	s.WriteDestFile(f.Path(), helpers.BytesToReader(x))
+	return HandledResult{file: f}
+}
+
+type directHandler struct {
+	basicFileHandler
+}
+
+func (h directHandler) Extensions() []string {
+	return []string{"png", "jpg", "gif", "txt", "yml", "conf", "json", "sh", "js", "patch"}
+}
+func (h directHandler) FileConvert(f *source.File, s *Site) HandledResult {
+	s.WriteDestFile(f.Path(), helpers.BytesToReader(f.Bytes()))
 	return HandledResult{file: f}
 }
