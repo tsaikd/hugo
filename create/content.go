@@ -24,10 +24,10 @@ import (
 	"time"
 
 	"github.com/spf13/cast"
-	"github.com/spf13/hugo/helpers"
-	"github.com/spf13/hugo/hugofs"
-	"github.com/spf13/hugo/hugolib"
-	"github.com/spf13/hugo/parser"
+	"github.com/tsaikd/hugo/helpers"
+	"github.com/tsaikd/hugo/hugofs"
+	"github.com/tsaikd/hugo/hugolib"
+	"github.com/tsaikd/hugo/parser"
 	jww "github.com/spf13/jwalterweatherman"
 	"github.com/spf13/viper"
 )

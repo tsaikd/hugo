@@ -18,8 +18,8 @@ import (
 	"errors"
 	"fmt"
 	"reflect"
-	"github.com/spf13/hugo/helpers"
-	"github.com/spf13/hugo/parser"
+	"github.com/tsaikd/hugo/helpers"
+	"github.com/tsaikd/hugo/parser"
 
 	"html/template"
 	"io"
@@ -30,9 +30,9 @@ import (
 	"sync"
 	"time"
 	"github.com/spf13/cast"
-	"github.com/spf13/hugo/hugofs"
-	"github.com/spf13/hugo/source"
-	"github.com/spf13/hugo/tpl"
+	"github.com/tsaikd/hugo/hugofs"
+	"github.com/tsaikd/hugo/source"
+	"github.com/tsaikd/hugo/tpl"
 	jww "github.com/spf13/jwalterweatherman"
 	"github.com/spf13/viper"
 )

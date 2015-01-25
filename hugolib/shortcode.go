@@ -24,8 +24,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/spf13/hugo/helpers"
-	"github.com/spf13/hugo/tpl"
+	"github.com/tsaikd/hugo/helpers"
+	"github.com/tsaikd/hugo/tpl"
 	jww "github.com/spf13/jwalterweatherman"
 )
 

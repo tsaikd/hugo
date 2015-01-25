@@ -6,8 +6,8 @@ import (
 	"io"
 	"path/filepath"
 
-	"github.com/spf13/hugo/helpers"
-	"github.com/spf13/hugo/hugofs"
+	"github.com/tsaikd/hugo/helpers"
+	"github.com/tsaikd/hugo/hugofs"
 )
 
 type PagePublisher interface {

@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/spf13/cast"
-	"github.com/spf13/hugo/helpers"
+	"github.com/tsaikd/hugo/helpers"
 )
 
 var EMPTY_PAGE = ""

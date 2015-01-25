@@ -15,7 +15,7 @@ package source
 
 import (
 	"bytes"
-	"github.com/spf13/hugo/helpers"
+	"github.com/tsaikd/hugo/helpers"
 	jww "github.com/spf13/jwalterweatherman"
 	"io"
 	"io/ioutil"

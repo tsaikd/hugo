@@ -17,7 +17,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/spf13/hugo/source"
+	"github.com/tsaikd/hugo/source"
 )
 
 var handlers []Handler

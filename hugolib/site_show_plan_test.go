@@ -2,9 +2,9 @@ package hugolib
 
 import (
 	"bytes"
-	"github.com/spf13/hugo/helpers"
-	"github.com/spf13/hugo/source"
-	"github.com/spf13/hugo/target"
+	"github.com/tsaikd/hugo/helpers"
+	"github.com/tsaikd/hugo/source"
+	"github.com/tsaikd/hugo/target"
 	"path/filepath"
 	"strings"
 	"testing"
