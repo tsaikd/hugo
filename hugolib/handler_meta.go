@@ -15,6 +15,7 @@ package hugolib
 
 import (
 	"errors"
+	"strings"
 
 	"github.com/spf13/hugo/source"
 )
@@ -90,7 +91,7 @@ func FindHandler(ext string) Handler {
 
 func HandlerMatch(h Handler, ext string) bool {
 	for _, x := range h.Extensions() {
-		if ext == x {
+		if strings.ToLower(ext) == x {
 			return true
 		}
 	}
