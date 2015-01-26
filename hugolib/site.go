@@ -28,15 +28,16 @@ import (
 
 	"bitbucket.org/pkg/inflect"
 	"github.com/spf13/cast"
+	jww "github.com/spf13/jwalterweatherman"
+	"github.com/spf13/nitro"
+	"github.com/spf13/viper"
+
 	"github.com/tsaikd/hugo/helpers"
 	"github.com/tsaikd/hugo/hugofs"
 	"github.com/tsaikd/hugo/source"
 	"github.com/tsaikd/hugo/target"
 	"github.com/tsaikd/hugo/tpl"
 	"github.com/tsaikd/hugo/transform"
-	jww "github.com/spf13/jwalterweatherman"
-	"github.com/spf13/nitro"
-	"github.com/spf13/viper"
 )
 
 var _ = transform.AbsURL
@@ -1119,6 +1120,7 @@ func (s *Site) RenderSitemap() error {
 	page.Date = s.Info.LastChange
 	page.Site = &s.Info
 	page.Url = "/"
+	page.ModTime = time.Now()
 
 	pages = append(pages, page)
 	pages = append(pages, s.Pages...)

@@ -17,24 +17,25 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"reflect"
-	"github.com/tsaikd/hugo/helpers"
-	"github.com/tsaikd/hugo/parser"
-
 	"html/template"
 	"io"
 	"net/url"
 	"path"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"sync"
 	"time"
+
 	"github.com/spf13/cast"
-	"github.com/tsaikd/hugo/hugofs"
-	"github.com/tsaikd/hugo/source"
-	"github.com/tsaikd/hugo/tpl"
 	jww "github.com/spf13/jwalterweatherman"
 	"github.com/spf13/viper"
+
+	"github.com/tsaikd/hugo/helpers"
+	"github.com/tsaikd/hugo/hugofs"
+	"github.com/tsaikd/hugo/parser"
+	"github.com/tsaikd/hugo/source"
+	"github.com/tsaikd/hugo/tpl"
 )
 
 type Page struct {
@@ -456,6 +457,9 @@ func (page *Page) update(f interface{}) error {
 			page.Date, err = cast.ToTimeE(v)
 			if err != nil {
 				jww.ERROR.Printf("Failed to parse date '%v' in page %s", v, page.File.Path())
+			}
+			if err == nil && page.ModTime.IsZero() {
+				page.ModTime = page.Date
 			}
 		case "publishdate", "pubdate":
 			page.PublishDate, err = cast.ToTimeE(v)
