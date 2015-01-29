@@ -111,10 +111,21 @@ func BytesToHTML(b []byte) template.HTML {
 	return template.HTML(string(b))
 }
 
+func dirToAbsPrefix(baseurl template.URL, dir string) (prefix string) {
+	prefix = strings.Replace(dir, `\`, "/", -1)
+	if len(prefix) > 0 && prefix[0:1] != "/" {
+		prefix = "/" + prefix
+	}
+	prefix = strings.TrimRight(prefix, "/")
+	prefix = MakePermalink(string(baseurl), prefix).String()
+	return
+}
+
 func GetHtmlRenderer(defaultFlags int, ctx RenderingContext) blackfriday.Renderer {
 	renderParameters := blackfriday.HtmlRendererParameters{
 		FootnoteAnchorPrefix:       viper.GetString("FootnoteAnchorPrefix"),
 		FootnoteReturnLinkContents: viper.GetString("FootnoteReturnLinkContents"),
+		AbsolutePrefix:             dirToAbsPrefix(ctx.BaseUrl, ctx.PageDir),
 	}
 
 	b := len(ctx.DocumentId) != 0
@@ -205,9 +216,11 @@ func ExtractTOC(content []byte) (newcontent []byte, toc []byte) {
 type RenderingContext struct {
 	Content    []byte
 	PageFmt    string
+	PageDir    string
 	DocumentId string
 	Config     *Blackfriday
 	configInit sync.Once
+	BaseUrl    template.URL
 }
 
 func (c *RenderingContext) getConfig() *Blackfriday {

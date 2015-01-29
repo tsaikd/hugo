@@ -204,8 +204,14 @@ func (p *Page) renderBytes(content []byte) []byte {
 }
 
 func (p *Page) renderContent(content []byte) []byte {
-	return helpers.RenderBytesWithTOC(helpers.RenderingContext{Content: content, PageFmt: p.guessMarkupType(),
-		DocumentId: p.UniqueId(), Config: p.getRenderingConfig()})
+	return helpers.RenderBytesWithTOC(helpers.RenderingContext{
+		Content:    content,
+		PageFmt:    p.guessMarkupType(),
+		PageDir:    p.Dir(),
+		DocumentId: p.UniqueId(),
+		Config:     p.getRenderingConfig(),
+		BaseUrl:    p.Site.BaseUrl,
+	})
 }
 
 func (p *Page) getRenderingConfig() *helpers.Blackfriday {
@@ -362,6 +368,9 @@ func (p *Page) permalink() (*url.URL, error) {
 	} else {
 		if len(pSlug) > 0 {
 			permalink = helpers.UrlPrep(viper.GetBool("UglyUrls"), path.Join(dir, p.Slug+"."+p.Extension()))
+		} else if p.Source.LogicalName() == "README.md" {
+			t := filepath.ToSlash(strings.TrimRight(p.Source.Dir(), `\/`) + ".html")
+			permalink = helpers.UrlPrep(viper.GetBool("UglyUrls"), t)
 		} else {
 			_, t := filepath.Split(p.Source.LogicalName())
 			permalink = helpers.UrlPrep(viper.GetBool("UglyUrls"), path.Join(dir, helpers.ReplaceExtension(strings.TrimSpace(t), p.Extension())))
@@ -816,6 +825,8 @@ func (p *Page) TargetPath() (outfile string) {
 
 	if len(strings.TrimSpace(p.Slug)) > 0 {
 		outfile = strings.TrimSpace(p.Slug) + "." + p.Extension()
+	} else if p.Source.LogicalName() == "README.md" {
+		return filepath.ToSlash(strings.TrimRight(p.Source.Dir(), `\/`) + ".html")
 	} else {
 		// Fall back to filename
 		outfile = helpers.ReplaceExtension(p.Source.LogicalName(), p.Extension())
