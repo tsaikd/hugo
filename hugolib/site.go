@@ -1265,6 +1265,7 @@ func (s *Site) RenderSitemap() error {
 	page.Date = s.Info.LastChange
 	page.Site = &s.Info
 	page.Url = "/"
+	page.ModTime = time.Now()
 
 	pages = append(pages, page)
 	pages = append(pages, s.Pages...)

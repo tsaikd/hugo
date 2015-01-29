@@ -471,6 +471,9 @@ func (page *Page) update(f interface{}) error {
 			if err != nil {
 				jww.ERROR.Printf("Failed to parse date '%v' in page %s", v, page.File.Path())
 			}
+			if err == nil && page.ModTime.IsZero() {
+				page.ModTime = page.Date
+			}
 		case "publishdate", "pubdate":
 			page.PublishDate, err = cast.ToTimeE(v)
 			if err != nil {

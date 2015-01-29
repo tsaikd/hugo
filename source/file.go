@@ -16,18 +16,22 @@ package source
 import (
 	"github.com/spf13/hugo/helpers"
 	"io"
+	"os"
+	"path"
 	"path/filepath"
 	"strings"
+	"time"
 )
 
 type File struct {
 	relpath     string // Original Full Path eg. /Users/Home/Hugo/foo.txt
 	logicalName string // foo.txt
 	Contents    io.Reader
-	section     string // The first directory
-	dir         string // The full directory Path (minus file name)
-	ext         string // Just the ext (eg txt)
-	uniqueId    string // MD5 of the filename
+	section     string    // The first directory
+	dir         string    // The full directory Path (minus file name)
+	ext         string    // Just the ext (eg txt)
+	uniqueId    string    // MD5 of the filename
+	ModTime     time.Time // Modify time of file
 }
 
 func (f *File) UniqueId() string {
@@ -105,8 +109,16 @@ func NewFileWithContents(relpath string, content io.Reader) *File {
 }
 
 func NewFile(relpath string) *File {
+	var modTime time.Time
+
+	if fi, err := os.Stat(relpath); err == nil {
+		modTime = fi.ModTime()
+	} else if fi, err := os.Stat(path.Join("content", relpath)); err == nil {
+		modTime = fi.ModTime()
+	}
 	return &File{
 		relpath: relpath,
+		ModTime: modTime,
 	}
 }
 
