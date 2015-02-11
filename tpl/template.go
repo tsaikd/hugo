@@ -30,8 +30,8 @@ import (
 
 	"github.com/eknkc/amber"
 	"github.com/spf13/cast"
-	bp "github.com/spf13/hugo/bufferpool"
-	"github.com/spf13/hugo/helpers"
+	bp "github.com/tsaikd/hugo/bufferpool"
+	"github.com/tsaikd/hugo/helpers"
 	jww "github.com/spf13/jwalterweatherman"
 	"github.com/yosssi/ace"
 )

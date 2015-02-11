@@ -6,9 +6,9 @@ import (
 	"testing"
 
 	"github.com/spf13/afero"
-	"github.com/spf13/hugo/hugofs"
-	"github.com/spf13/hugo/source"
-	"github.com/spf13/hugo/target"
+	"github.com/tsaikd/hugo/hugofs"
+	"github.com/tsaikd/hugo/source"
+	"github.com/tsaikd/hugo/target"
 	"github.com/spf13/viper"
 )
 

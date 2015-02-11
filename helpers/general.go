@@ -25,7 +25,7 @@ import (
 	"reflect"
 	"strings"
 
-	bp "github.com/spf13/hugo/bufferpool"
+	bp "github.com/tsaikd/hugo/bufferpool"
 )
 
 // Filepath separator defined by os.Separator.

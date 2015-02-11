@@ -3,7 +3,7 @@ package hugolib
 import (
 	"bytes"
 	"fmt"
-	"github.com/spf13/hugo/parser"
+	"github.com/tsaikd/hugo/parser"
 	"html/template"
 	"io"
 	"path/filepath"
@@ -11,11 +11,11 @@ import (
 	"testing"
 
 	"github.com/spf13/afero"
-	"github.com/spf13/hugo/helpers"
-	"github.com/spf13/hugo/hugofs"
-	"github.com/spf13/hugo/source"
-	"github.com/spf13/hugo/target"
-	"github.com/spf13/hugo/tpl"
+	"github.com/tsaikd/hugo/helpers"
+	"github.com/tsaikd/hugo/hugofs"
+	"github.com/tsaikd/hugo/source"
+	"github.com/tsaikd/hugo/target"
+	"github.com/tsaikd/hugo/tpl"
 	"github.com/spf13/viper"
 	"reflect"
 )

@@ -16,7 +16,7 @@ package hugolib
 import (
 	"errors"
 	"fmt"
-	"github.com/spf13/hugo/helpers"
+	"github.com/tsaikd/hugo/helpers"
 	"github.com/spf13/viper"
 	"html/template"
 	"math"

@@ -3,7 +3,7 @@ package transform
 import (
 	"io"
 
-	bp "github.com/spf13/hugo/bufferpool"
+	bp "github.com/tsaikd/hugo/bufferpool"
 )
 
 type trans func([]byte) []byte

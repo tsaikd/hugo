@@ -18,10 +18,10 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
-	"github.com/spf13/hugo/create"
-	"github.com/spf13/hugo/helpers"
-	"github.com/spf13/hugo/hugofs"
-	"github.com/spf13/hugo/parser"
+	"github.com/tsaikd/hugo/create"
+	"github.com/tsaikd/hugo/helpers"
+	"github.com/tsaikd/hugo/hugofs"
+	"github.com/tsaikd/hugo/parser"
 	jww "github.com/spf13/jwalterweatherman"
 	"github.com/spf13/viper"
 )

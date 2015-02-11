@@ -1,7 +1,7 @@
 package hugolib
 
 import (
-	"github.com/spf13/hugo/tpl"
+	"github.com/tsaikd/hugo/tpl"
 	"testing"
 )
 

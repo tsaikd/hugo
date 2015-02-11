@@ -23,7 +23,7 @@ import (
 	"os/exec"
 
 	"github.com/russross/blackfriday"
-	bp "github.com/spf13/hugo/bufferpool"
+	bp "github.com/tsaikd/hugo/bufferpool"
 	jww "github.com/spf13/jwalterweatherman"
 	"github.com/spf13/viper"
 

@@ -14,7 +14,7 @@
 package hugolib
 
 import (
-	"github.com/spf13/hugo/helpers"
+	"github.com/tsaikd/hugo/helpers"
 )
 
 // Scratch is a writable context used for stateful operations in Page/Node rendering.

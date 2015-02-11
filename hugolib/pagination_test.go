@@ -2,7 +2,7 @@ package hugolib
 
 import (
 	"fmt"
-	"github.com/spf13/hugo/source"
+	"github.com/tsaikd/hugo/source"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 	"path/filepath"
